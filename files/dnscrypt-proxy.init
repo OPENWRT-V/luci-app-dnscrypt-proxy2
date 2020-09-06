@@ -344,7 +344,7 @@ cert_ignore_timestamp,false
             site_addr="$(uci_get      uhttpd     main       listen_https        '[::]:80')"
             schema=http
             port=${site_addr##*:}
-            [ x"${port}" != "x80" -a $redirect_https -eq 1 ] && opkg list-installed | grep libustream-openssl && schema=https
+            [ x"${port}" != "x80" -a $redirect_https -eq 1 ] && opkg list-installed | grep libustream-openssl && netstat -nltp | grep -E ":$port\s" && schema=https
             [ x"${port}" == "x80" -o x"${port}" == "x443" ] && port=
             urls="${schema}://localhost${port:+:${port}}/${urls##*/}"
         fi
