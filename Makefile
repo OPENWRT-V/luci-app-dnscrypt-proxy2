@@ -79,6 +79,8 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_BIN) ./files/dnscrypt-proxy.init $(1)/etc/init.d/dnscrypt-proxy
 	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
 	$(INSTALL_DATA) ./files/luci-app-dnscrypt-proxy2.json $(1)/usr/share/rpcd/acl.d/
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) ./files/bin/$(ARCH)/dnscrypt-proxy $(1)/usr/sbin/dnscrypt-proxy
 endef
 
 define Package/$(PKG_NAME)/postinst
